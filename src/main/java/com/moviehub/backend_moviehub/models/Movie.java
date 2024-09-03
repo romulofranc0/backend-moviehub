@@ -11,8 +11,8 @@ public class Movie {
     private String title;
     @JsonProperty("Year")
     private String year;
-    @JsonProperty("imdbId")
-    private String imdbId;
+    @JsonProperty("imdbID")
+    private String imdbID;
     @JsonProperty("Type")
     private String type;
     @JsonProperty("Poster")

@@ -22,8 +22,8 @@ public class OmdbController {
     }
 
     @GetMapping("/details")
-    public MovieDetails getDetails(@RequestParam String imdbId) {
-        return movieService.getDetails(imdbId);
+    public MovieDetails getDetails(@RequestParam String imdbID) {
+        return movieService.getDetails(imdbID);
     }
     
     

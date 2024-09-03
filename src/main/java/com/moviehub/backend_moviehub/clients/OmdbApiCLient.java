@@ -14,5 +14,5 @@ public interface OmdbApiCLient {
     Search searchMovies(@RequestParam("s") String title,@RequestParam("apiKey") String apiKey);
 
     @GetMapping
-    MovieDetails movieDetails(@RequestParam("i") String imdbId,@RequestParam("apiKey") String apiKey);
+    MovieDetails movieDetails(@RequestParam("i") String imdbID,@RequestParam("apiKey") String apiKey);
 }
