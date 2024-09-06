@@ -9,6 +9,6 @@ import lombok.Data;
 public class Search {
 
     @JsonProperty("Search")
-    private List<Movie> search;
+    private List<OmdbResponse> search;
 
 }

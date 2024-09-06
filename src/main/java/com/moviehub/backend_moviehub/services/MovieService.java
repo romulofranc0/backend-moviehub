@@ -1,7 +1,7 @@
 package com.moviehub.backend_moviehub.services;
 
-import org.springframework.core.env.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.moviehub.backend_moviehub.clients.OmdbApiCLient;
@@ -17,13 +17,13 @@ public class MovieService {
     @Autowired
     private Environment environment;
 
-    public MovieDetails getDetails(String title) {
+    public MovieDetails getDetails(String imdbID) {
         String apiKey = environment.getProperty("omdb.api.key");
-        return omdbApiCLient.movieDetails(title, apiKey);
+        return omdbApiCLient.movieDetails(imdbID, apiKey);
     }
 
-    public Search getMovies(String imdbID) {
+    public Search getMovies(String title) {
         String apiKey = environment.getProperty("omdb.api.key");
-        return omdbApiCLient.searchMovies(imdbID, apiKey);
+        return omdbApiCLient.searchMovies(title, apiKey);
     }
 }
