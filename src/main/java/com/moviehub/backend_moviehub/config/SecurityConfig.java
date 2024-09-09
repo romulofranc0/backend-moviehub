@@ -33,14 +33,15 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(authorize -> authorize
-        .requestMatchers("/h2-console/**").permitAll()  // Permitir acesso ao console H2
-        .anyRequest().authenticated())
-    .csrf(csrf -> csrf.disable())
-    .oauth2ResourceServer(oauth -> oauth.jwt(Customizer.withDefaults()))
-    .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-    .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()));  // Necessário para o console H2
+                .requestMatchers("/h2-console/**").permitAll() // Permitir acesso ao console H2
+                .anyRequest().authenticated())
+                .csrf(csrf -> csrf.disable())
+                .oauth2ResourceServer(oauth -> oauth.jwt(Customizer.withDefaults()))
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable())); // Necessário para o
+                                                                                                   // console H2
 
-return http.build();
+        return http.build();
     }
 
     @Configuration
@@ -49,7 +50,7 @@ return http.build();
         @Override
         public void addCorsMappings(CorsRegistry registry) {
             registry.addMapping("/**")
-                    .allowedOrigins("http://localhost:4200","http://localhost:8080")
+                    .allowedOrigins("http://localhost:4200", "http://localhost:8080")
                     .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                     .allowedHeaders("*")
                     .allowCredentials(true);
