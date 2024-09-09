@@ -19,11 +19,12 @@ public class MovieService {
 
     public MovieDetails getDetails(String imdbID) {
         String apiKey = environment.getProperty("omdb.api.key");
-        return omdbApiCLient.movieDetails(imdbID, apiKey);
+        return omdbApiCLient.movieDetails(imdbID, apiKey,"full");
     }
 
     public Search getMovies(String title) {
         String apiKey = environment.getProperty("omdb.api.key");
-        return omdbApiCLient.searchMovies(title, apiKey);
+        
+        return omdbApiCLient.searchMovies(title, apiKey,"movie");
     }
 }
