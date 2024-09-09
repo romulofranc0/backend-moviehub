@@ -11,8 +11,8 @@ import com.moviehub.backend_moviehub.models.Search;
 public interface OmdbApiCLient {
 
     @GetMapping
-    Search searchMovies(@RequestParam("s") String title,@RequestParam("apiKey") String apiKey);
+    Search searchMovies(@RequestParam("s") String title,@RequestParam("apiKey") String apiKey, @RequestParam String type);
 
     @GetMapping
-    MovieDetails movieDetails(@RequestParam("i") String imdbID,@RequestParam("apiKey") String apiKey);
+    MovieDetails movieDetails(@RequestParam("i") String imdbID,@RequestParam("apiKey") String apiKey,@RequestParam String plot);
 }
