@@ -31,7 +31,7 @@ public class Review {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    private Double score;
+    private Double rating;
 
     private String reviewTitle;
     

@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.moviehub.backend_moviehub.controllers.dtos.LoginRequest;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -47,4 +51,8 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<com.moviehub.backend_moviehub.entities.List> lists;
+
+    public boolean isLoginCorrect(LoginRequest loginRequest, PasswordEncoder passwordEncoder) {
+       return passwordEncoder.matches(loginRequest.password(), this.password);
+    }
 }
