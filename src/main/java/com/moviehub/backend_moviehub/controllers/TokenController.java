@@ -23,16 +23,17 @@ public class TokenController {
 
     private final UserRepository userRepository;
 
-    private BCryptPasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    public TokenController(JwtEncoder jwtEncoder, UserRepository userRepository) {
+    public TokenController(JwtEncoder jwtEncoder, UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.jwtEncoder = jwtEncoder;
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
-        Instant now = Instant.now();
+        var now = Instant.now();
         var user = userRepository.findByUsername(loginRequest.username());
 
         if (user.isEmpty() || user.get().isLoginCorrect(loginRequest, passwordEncoder)) {
