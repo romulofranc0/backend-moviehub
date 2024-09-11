@@ -23,23 +23,23 @@ public class TokenController {
 
     private final UserRepository userRepository;
 
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public TokenController(JwtEncoder jwtEncoder, UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.jwtEncoder = jwtEncoder;
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+        this.bCryptPasswordEncoder = passwordEncoder;
     }
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
-        var now = Instant.now();
         var user = userRepository.findByUsername(loginRequest.username());
-
-        if (user.isEmpty() || user.get().isLoginCorrect(loginRequest, passwordEncoder)) {
+        
+        if (user.isEmpty() || !user.get().isLoginCorrect(loginRequest, bCryptPasswordEncoder)) {
             throw new BadCredentialsException("username or password is invalid or does not exist!");
         }
-
+        
+        var now = Instant.now();
         var expiresIn = 300L;
 
         var claims = JwtClaimsSet.builder()
