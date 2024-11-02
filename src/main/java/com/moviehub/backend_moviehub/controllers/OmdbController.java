@@ -1,6 +1,7 @@
 package com.moviehub.backend_moviehub.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +12,7 @@ import com.moviehub.backend_moviehub.services.MovieService;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class OmdbController {
 
     @Autowired
